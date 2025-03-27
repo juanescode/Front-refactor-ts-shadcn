@@ -8,26 +8,8 @@ import {
 
 import Cookies from "js-cookie";
 import { loginRequest, registerRequest, verifyTokenRequest } from "../api/auth";
+import { AuthContextType, User } from "../types/Auth.types";
 
-interface User {
-  id: string;
-  username: string;
-  email: string;
-}
-
-interface AuthContextType {
-  user: User | null;
-  isAuthenticated: boolean;
-  loading: boolean;
-  errors: string[];
-  signup: (user: {
-    username: string;
-    email: string;
-    password: string;
-  }) => Promise<void>;
-  signin: (user: { email: string; password: string }) => Promise<void>;
-  logout: () => void;
-}
 
 interface AuthProviderProps {
   children: ReactNode;

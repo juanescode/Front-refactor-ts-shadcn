@@ -1,22 +1,5 @@
+import { AuthResponse, LoginUser, RegisterUser } from "../types/Auth.types.tsx";
 import axios from "./axios.ts";
-
-interface RegisterUser {
-  username: string;
-  email: string;
-  password: string;
-}
-
-interface LoginUser {
-  email: string;
-  password: string;
-}
-
-interface AuthResponse {
-  id: string;
-  username: string;
-  email: string;
-  token?: string;
-}
 
 export const registerRequest = (user: RegisterUser) => 
   axios.post<AuthResponse>("/register", user);

@@ -2,23 +2,19 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
-
-interface LoginFormInputs {
-  email: string;
-  password: string;
-}
+import { LoginUser } from "../../types/Auth.types";
 
 function LoginPage() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginFormInputs>();
+  } = useForm<LoginUser>();
 
   const { signin, errors: signinErrors, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
+  const onSubmit: SubmitHandler<LoginUser> = (data) => {
     signin(data);
   };
 

@@ -2,19 +2,15 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import { RegisterUser } from "../../types/Auth.types";
 
-interface RegisterFormInputs {
-  username: string;
-  email: string;
-  password: string;
-}
 
 function RegisterPage() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<RegisterFormInputs>();
+  } = useForm<RegisterUser>();
 
   const { signup, isAuthenticated, errors: RegisterErrors } = useAuth();
   const navigate = useNavigate();
@@ -23,7 +19,7 @@ function RegisterPage() {
     if (isAuthenticated) navigate("/tasks");
   }, [isAuthenticated, navigate]);
 
-  const onSubmit: SubmitHandler<RegisterFormInputs> = async (values) => {
+  const onSubmit: SubmitHandler<RegisterUser> = async (values) => {
     signup(values);
   };
 
